@@ -1,5 +1,5 @@
-# Hightower
-Hightower is planned as an application for managing multiple AWS orgs.
+# Cabana
+Cabana is planned as an application for managing pools of AWS accounts.
 
 This repo is under construction. It currently contains some starter resources:
   * A DynamoDB Table, codified using the [AWS Cloud Development Kit (CDK)](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html);
