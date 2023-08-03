@@ -14,6 +14,6 @@ Cabana adds the following features.
 2. An admin UI for cloud platform teams to manage their organization's pool of accounts, and set of leases on them.
 3. Integration with Active Directory (AD), allowing teams to grant access to accounts based on AD group membership.
 4. Automation providing a declarative interface for cloud platform teams to state and maintain the desired number of available accounts. Cabana automatically handles registration with Control Tower.
-5. Autimation for account deletion or recycling at the end of a lease term.
+5. Automation for account deletion or recycling at the end of a lease term.
 
 Get started with Cabana by deploying the CDK app from this repo.
