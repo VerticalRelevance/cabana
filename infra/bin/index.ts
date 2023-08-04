@@ -3,6 +3,7 @@ import { App } from "aws-cdk-lib";
 import { SSMClient, GetParametersCommand } from "@aws-sdk/client-ssm";
 const crypto = require("crypto");
 import { AppStack, AppStackProps } from "../lib";
+import { RoleStack } from "../lib/roleStack";
 const stackname = require("@cdk-turnkey/stackname");
 const STACKNAME_HASH_LENGTH = 6;
 
@@ -72,4 +73,5 @@ const STACKNAME_HASH_LENGTH = 6;
   new AppStack(app, stackname("app", { hash: STACKNAME_HASH_LENGTH }), {
     ...(appProps as AppStackProps),
   });
+  new RoleStack(app, stackname("role", {hash:STACKNAME_HASH_LENGTH}), {});
 })();

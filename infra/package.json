@@ -12,7 +12,8 @@
     "test": "jest",
     "synth": "npx cdk synth --no-staging",
     "diff": "npx cdk diff",
-    "init-submods": "git submodule update --init --recursive"
+    "init-submods": "git submodule update --init --recursive",
+    "deploy-role-stack": "bash deploy-role-stack.sh"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
