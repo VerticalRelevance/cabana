@@ -13,24 +13,26 @@
     "synth": "npx cdk synth --no-staging",
     "diff": "npx cdk diff",
     "init-submods": "git submodule update --init --recursive",
-    "deploy-role-stack": "bash deploy-role-stack.sh"
+    "deploy-role-stack": "bash deploy-role-stack.sh",
+    "deploy-scratch-stack": "npx cdk deploy Scratch"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
-    "@types/node": "^18.14.6",
     "aws-cdk": "^2.77.0",
     "jest": "^29.5.0",
-    "ts-jest": "^29.1.0",
-    "ts-node": "^10.9.1",
-    "typescript": "~5.0.4"
+    "ts-jest": "^29.1.0"
   },
   "dependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "~5.0.4",
+    "@types/node": "^18.14.6",
     "@aws-sdk/client-dynamodb": "^3.325.0",
     "@aws-sdk/client-iam": "^3.385.0",
     "@aws-sdk/client-ssm": "^3.325.0",
     "@cdk-turnkey/stackname": "^2.1.0",
     "aws-cdk-lib": "^2.77.0",
     "bufferutil": "^4.0.7",
+    "setty-ts": "github:douglasnaphas/setty",
     "utf-8-validate": "^6.0.3"
   }
 }

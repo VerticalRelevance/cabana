@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!ts-node
 import { App } from "aws-cdk-lib";
 import { SSMClient, GetParametersCommand } from "@aws-sdk/client-ssm";
 import {
@@ -9,6 +9,8 @@ const crypto = require("crypto");
 import { AppStack, AppStackProps } from "../lib";
 import { RoleStack } from "../lib/roleStack";
 import { Stack, StackProps, CfnOutput } from "aws-cdk-lib";
+// import { greeting } from "setty-ts";
+const greeting = require("setty-ts").greeting;
 
 const stackname = require("@cdk-turnkey/stackname");
 const STACKNAME_HASH_LENGTH = 6;
@@ -18,7 +20,8 @@ interface ScratchStackProps extends StackProps {
   v2: string;
   v3: string;
 }
-class ScratchStack extends Stack { // to verify computed inputs to real stacks
+class ScratchStack extends Stack {
+  // to verify computed inputs to real stacks
   constructor(scope: App, id: string, props: ScratchStackProps) {
     super(scope, id, props);
     const { v1, v2, v3 } = props;
@@ -122,7 +125,11 @@ class ScratchStack extends Stack { // to verify computed inputs to real stacks
     provider.Arn;
   });
 
-  new ScratchStack(app, "Scratch", { v1: ``, v2: ``, v3: `` });
+  new ScratchStack(app, "Scratch", {
+    v1: `${greeting("Scratch")}`,
+    v2: ``,
+    v3: ``,
+  });
 
   new RoleStack(app, stackname("role", { hash: STACKNAME_HASH_LENGTH }), {
     providerArn: "",
