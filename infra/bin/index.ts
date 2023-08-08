@@ -34,6 +34,40 @@ class ScratchStack extends Stack {
 }
 
 (async () => {
+  if (!process || !process.env || !process.env.GITHUB_REPOSITORY) {
+    console.error(
+      "The environment variable GITHUB_REPOSITORY must be set. It is used to name the stack,"
+    );
+    console.error("and to authenticate to AWS via GitHub and OpenID Connect.");
+    console.error("It should be something like octocat/Hello-World. See:");
+    console.error(
+      "https://docs.github.com/en/actions/reference/environment-variables"
+    );
+    console.error(
+      "https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services"
+    );
+    console.error("https://www.npmjs.com/package/@cdk-turnkey/stackname");
+    const GITHUB_REPOSITORY_NOT_SET = 6;
+    process.exit(GITHUB_REPOSITORY_NOT_SET);
+  }
+  if (!process.env.GITHUB_REF) {
+    console.error(
+      "The environment variable GITHUB_REF must be set. It is used to name the stack,"
+    );
+    console.error("and to authenticate to AWS via GitHub and OpenID Connect.");
+    console.error(
+      "It should be something like refs/heads/feature-branch-1. See:"
+    );
+    console.error(
+      "https://docs.github.com/en/actions/reference/environment-variables"
+    );
+    console.error(
+      "https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services"
+    );
+    console.error("https://www.npmjs.com/package/@cdk-turnkey/stackname");
+    const GITHUB_REF_NOT_SET = 7;
+    process.exit(GITHUB_REF_NOT_SET);
+  }
   const app = new App();
   class ConfigParam {
     appParamName: string;
