@@ -11,6 +11,8 @@ import { RoleStack } from "../lib/roleStack";
 import { Stack, StackProps, CfnOutput } from "aws-cdk-lib";
 // import { greeting } from "setty-ts";
 const greeting = require("setty-ts").greeting;
+const response2GitHubProviderArn =
+  require("aws-github-oidc").response2GitHubProviderArn;
 
 const stackname = require("@cdk-turnkey/stackname");
 const STACKNAME_HASH_LENGTH = 6;
@@ -121,13 +123,19 @@ class ScratchStack extends Stack {
     process.exit(BAD_RESPONSE);
   }
 
-  const providerArn = response.OpenIDConnectProviderList?.filter((provider) => {
-    provider.Arn;
-  });
+  // const providerArn = response.OpenIDConnectProviderList?.filter((provider) => {
+  //   provider.Arn;
+  // });
+  const providerArn = response2GitHubProviderArn(response) || "";
+  if (providerArn === "") {
+    const NO_GITHUB_PROVIDER = 5;
+    console.error("No GitHub Provider");
+    process.exit(NO_GITHUB_PROVIDER);
+  }
 
   new ScratchStack(app, "Scratch", {
     v1: `${greeting("Scratch")}`,
-    v2: ``,
+    v2: `${providerArn}`,
     v3: ``,
   });
 
