@@ -1,4 +1,4 @@
-#!ts-node
+#!/usr/bin/env npx ts-node
 import { App } from "aws-cdk-lib";
 import { SSMClient, GetParametersCommand } from "@aws-sdk/client-ssm";
 import {
