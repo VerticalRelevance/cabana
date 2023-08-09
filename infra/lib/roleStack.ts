@@ -18,6 +18,9 @@ export class RoleStack extends Stack {
         },
       }),
     });
+    gitHubRole.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("AdministratorAccess")
+    );
     new CfnOutput(this, "GitHubRoleArn", {
       value: `${gitHubRole.roleArn}`,
     });

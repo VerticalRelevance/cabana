@@ -167,14 +167,16 @@ class ScratchStack extends Stack {
     process.exit(NO_GITHUB_PROVIDER);
   }
 
+  const subject = `repo:${process.env.GITHUB_REPOSITORY}:ref:${process.env.GITHUB_REF}`;
+
   new ScratchStack(app, "Scratch", {
     v1: `${greeting("Scratch")}`,
-    v2: `${providerArn}`,
-    v3: `repo:${process.env.GITHUB_REPOSITORY}:ref:${process.env.GITHUB_REF}`,
+    v2: providerArn,
+    v3: subject,
   });
 
   new RoleStack(app, stackname("role", { hash: STACKNAME_HASH_LENGTH }), {
-    providerArn: "",
-    subject: "",
+    providerArn,
+    subject,
   });
 })();
