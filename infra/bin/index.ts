@@ -170,7 +170,7 @@ class ScratchStack extends Stack {
   new ScratchStack(app, "Scratch", {
     v1: `${greeting("Scratch")}`,
     v2: `${providerArn}`,
-    v3: ``,
+    v3: `repo:${process.env.GITHUB_REPOSITORY}:ref:${process.env.GITHUB_REF}`,
   });
 
   new RoleStack(app, stackname("role", { hash: STACKNAME_HASH_LENGTH }), {
