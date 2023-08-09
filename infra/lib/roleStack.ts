@@ -10,10 +10,8 @@ export class RoleStack extends Stack {
     const { providerArn, subject } = props;
     const gitHubRole = new iam.Role(this, "GitHubRole", {
       assumedBy: new iam.WebIdentityPrincipal(providerArn, {
-        StringLike: {
+        ["ForAllValues:StringEquals"]: {
           ["token.actions.githubusercontent.com:sub"]: subject,
-        },
-        StringEquals: {
           ["token.actions.githubusercontent.com:aud"]: "sts.amazon.com",
         },
       }),
