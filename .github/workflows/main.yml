@@ -53,6 +53,9 @@ jobs:
           npm test
   test-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v3
         with:
@@ -74,7 +77,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::105379901447:role/sVcmas-bbd933-role-GitHubRoleECD51173-89CYB55967ID
-          aws-region: us-east-1
+          aws-region: us-west-2
       - name: Deploy the app stack to the test account
         working-directory: infra
         run: |
