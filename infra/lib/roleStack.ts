@@ -13,6 +13,9 @@ export class RoleStack extends Stack {
         StringLike: {
           ["token.actions.githubusercontent.com:sub"]: "",
         },
+        StringEquals: {
+          ["token.actions.githubusercontent.com:aud"]: "sts.amazon.com",
+        },
       }),
     });
     new CfnOutput(this, "GitHubRoleArn", {
