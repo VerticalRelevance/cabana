@@ -167,8 +167,7 @@ class ScratchStack extends Stack {
     process.exit(NO_GITHUB_PROVIDER);
   }
 
-  // const subject = `repo:${process.env.GITHUB_REPOSITORY}:ref:${process.env.GITHUB_REF}`;
-  const subject = `repo:${process.env.GITHUB_REPOSITORY}:*`;
+  const subject = `repo:${process.env.GITHUB_REPOSITORY}:ref:${process.env.GITHUB_REF}`;
 
   new ScratchStack(app, "Scratch", {
     v1: `${greeting("Scratch")}`,

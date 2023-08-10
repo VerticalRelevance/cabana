@@ -14,7 +14,7 @@ export class RoleStack extends Stack {
           ["token.actions.githubusercontent.com:sub"]: subject,
         },
         StringEquals: {
-          ["token.actions.githubusercontent.com:aud"]: "sts.amazon.com",
+          ["token.actions.githubusercontent.com:aud"]: "sts.amazonaws.com",
         },
       }),
     });
