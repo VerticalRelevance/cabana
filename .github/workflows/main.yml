@@ -76,7 +76,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_NUMBER }}:role/sVcmas-bbd933-role-GitHubRoleECD51173-89CYB55967ID
+          role-to-assume: ${{ vars.TEST_ROLE }}
           aws-region: us-west-2
       - name: Deploy the app stack to the test account
         working-directory: infra
