@@ -14,7 +14,8 @@
     "diff": "npx cdk diff",
     "init-submods": "git submodule update --init --recursive",
     "deploy-role-stack": "TS_NODE_SKIP_IGNORE=true bash deploy-role-stack.sh",
-    "deploy-scratch-stack": "TS_NODE_SKIP_IGNORE=true bash deploy-scratch-stack.sh"
+    "deploy-scratch-stack": "TS_NODE_SKIP_IGNORE=true bash deploy-scratch-stack.sh",
+    "deploy-app-stack": "TS_NODE_SKIP_IGNORE=true bash deploy-app-stack.sh"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",

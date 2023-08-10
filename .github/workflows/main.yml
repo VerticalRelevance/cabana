@@ -81,9 +81,7 @@ jobs:
       - name: Deploy the app stack to the test account
         working-directory: infra
         run: |
-          npx cdk bootstrap
-          STACKNAME=$(npx @cdk-turnkey/stackname@2.1.0 --suffix app --hash 6)
-          npx cdk deploy --require-approval never ${STACKNAME}
+          npm deploy-app-stack
       - name: Deploy content (test account)
         working-directory: content
         run: |
