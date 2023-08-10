@@ -81,7 +81,7 @@ jobs:
       - name: Deploy the app stack to the test account
         working-directory: infra
         run: |
-          npm deploy-app-stack
+          npm run deploy-app-stack
       - name: Deploy content (test account)
         working-directory: content
         run: |
