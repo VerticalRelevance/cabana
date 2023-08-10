@@ -157,9 +157,6 @@ class ScratchStack extends Stack {
     process.exit(BAD_RESPONSE);
   }
 
-  // const providerArn = response.OpenIDConnectProviderList?.filter((provider) => {
-  //   provider.Arn;
-  // });
   const providerArn = response2GitHubProviderArn(response) || "";
   if (providerArn === "") {
     const NO_GITHUB_PROVIDER = 5;
