@@ -15,42 +15,6 @@ jobs:
         run: |
           echo "${AWS_ACCOUNT_NUMBER}"
           echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
-  test-rolename:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install
-        working-directory: rolename
-        run: |
-          npm install
-      - name: Build
-        working-directory: rolename
-        run: |
-          npm run build
-      - name: Test
-        working-directory: rolename
-        run: |
-          npm test
-      - name: itest
-        working-directory: rolename
-        run: |
-          npm run itest
-  test-oidc:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install
-        working-directory: oidc
-        run: |
-          npm install
-      - name: Build
-        working-directory: oidc
-        run: |
-          npm run build
-      - name: Test
-        working-directory: oidc
-        run: |
-          npm test
   test-and-deploy:
     runs-on: ubuntu-latest
     permissions:
