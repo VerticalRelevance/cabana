@@ -15,7 +15,47 @@ jobs:
         run: |
           echo "${AWS_ACCOUNT_NUMBER}"
           echo ${AWS_DEFAULT_REGION} | sed 's/-/+/g'
-  test-and-deploy:
+  test-infra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install
+        working-directory: infra
+        run: |
+          npm install
+      - name: Build
+        working-directory: infra
+        run: |
+          npm run build
+      - name: Test
+        working-directory: infra
+        run: |
+          npm test
+  deploy-mgmt-account-read-role:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install infra
+        working-directory: infra
+        run: |
+          npm install
+      - name: Build infra
+        working-directory: infra
+        run: |
+          npm run build
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.MGMT_ACCOUNT_ROLE }}
+          aws-region: us-west-2
+      - name: Deploy the app stack to the test account
+        working-directory: infra
+        run: |
+          npm run deploy-mgmt-read-role-stack
+  deploy-app:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -33,10 +73,6 @@ jobs:
         working-directory: infra
         run: |
           npm run build
-      - name: Test infra
-        working-directory: infra
-        run: |
-          npm test
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:

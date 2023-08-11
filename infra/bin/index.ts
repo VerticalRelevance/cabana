@@ -8,15 +8,15 @@ import {
 const crypto = require("crypto");
 import { AppStack, AppStackProps } from "../lib";
 import { RoleStack } from "../lib/roleStack";
+import { MgmtAccountReadRoleStack } from "../lib/mgmtAccountReadRoleStack";
 import { Stack, StackProps, CfnOutput } from "aws-cdk-lib";
 // import { greeting } from "setty-ts";
 const greeting = require("setty-ts").greeting;
 const response2GitHubProviderArn =
   require("aws-github-oidc").response2GitHubProviderArn;
-
 const stackname = require("@cdk-turnkey/stackname");
-const STACKNAME_HASH_LENGTH = 6;
 
+const STACKNAME_HASH_LENGTH = 6;
 interface ScratchStackProps extends StackProps {
   v1: string;
   v2: string;
@@ -176,4 +176,14 @@ class ScratchStack extends Stack {
     providerArn,
     subject,
   });
+
+  const ACCOUNT_NUMBER_INDEX_IN_ARN = 4;
+  const ARN_SEPARATOR = /:/;
+  const appAccountNumber =
+    providerArn.split(ARN_SEPARATOR)[ACCOUNT_NUMBER_INDEX_IN_ARN];
+  new MgmtAccountReadRoleStack(
+    app,
+    stackname("mgmtread", { hash: STACKNAME_HASH_LENGTH }),
+    { appAccountNumber }
+  );
 })();
