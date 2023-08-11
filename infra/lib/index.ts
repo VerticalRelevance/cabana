@@ -1,6 +1,7 @@
 import { App, Stack, StackProps, RemovalPolicy, CfnOutput } from "aws-cdk-lib";
 import { aws_s3 as s3 } from "aws-cdk-lib";
 import { aws_dynamodb as dynamodb } from "aws-cdk-lib";
+import { aws_cognito as cognito } from "aws-cdk-lib";
 const appTable = require("./appTable");
 
 export interface AppStackProps extends StackProps {
@@ -22,5 +23,9 @@ export class AppStack extends Stack {
       value: bucket.bucketName,
     });
     const table = appTable(this);
+
+    const userPool = new cognito.UserPool(this, "UserPool", {
+      removalPolicy: RemovalPolicy.DESTROY,
+    });
   }
 }
